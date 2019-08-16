@@ -25,7 +25,8 @@ def main():
 
    args = GetArgs()
 
-   data = pd.read_csv('./' + args.file)
+   #data = pd.read_csv('./' + args.file)
+   data = pd.read_csv(args.file)
 
    data['date_time'] = pd.to_datetime(data.date_time, format='%d/%m/%Y %H:%M:%S')
    time = data.date_time.sort_values()
@@ -115,7 +116,7 @@ def main():
       plt.savefig('swp_report.png')
 
    else:
-      print('You must specify the type of the report')
+      print('You must specify the correct type of the report: cpu, mem, hdd, swp supported')
 
 # Start program
 if __name__ == "__main__":
