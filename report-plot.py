@@ -27,6 +27,8 @@ def main():
 
    #data = pd.read_csv('./' + args.file)
    data = pd.read_csv(args.file)
+    
+   filename = args.file[:-3] + 'png'
 
    data['date_time'] = pd.to_datetime(data.date_time, format='%d/%m/%Y %H:%M:%S')
    time = data.date_time.sort_values()
@@ -50,7 +52,7 @@ def main():
       plt.xlabel('datum', **axis_font)
       plt.ylabel('CPU %', **axis_font)
 
-      plt.savefig('cpu_report.png')
+      plt.savefig(filename)
 
    elif args.type == "ram":
       ram = data.value
@@ -71,7 +73,7 @@ def main():
       plt.xlabel('datum', **axis_font)
       plt.ylabel('RAM %', **axis_font)
 
-      plt.savefig('ram_report.png')
+      plt.savefig(filename)
 
    elif args.type == "hdd":
       hdd = data.value
@@ -92,7 +94,7 @@ def main():
       plt.xlabel('datum', **axis_font)
       plt.ylabel('HDD KB/s', **axis_font)
 
-      plt.savefig('hdd_report.png')
+      plt.savefig(filename)
 
    elif args.type == "swp":
       swp = data.value
@@ -113,7 +115,7 @@ def main():
       plt.xlabel('datum', **axis_font)
       plt.ylabel('SWP KB/s', **axis_font)
 
-      plt.savefig('swp_report.png')
+      plt.savefig(filename)
 
    else:
       print('You must specify the correct type of the report: cpu, mem, hdd, swp supported')
